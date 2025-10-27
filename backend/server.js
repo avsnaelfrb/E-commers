@@ -3,7 +3,8 @@ dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors"
-import authRoute from "./src/routes/authRoute.js"
+import authRoute from "./src/routes/authRoute.js";
+import productRoute from "./src/routes/productRoute.js";
 
 const connectDB =  async () => {
     try {
@@ -21,7 +22,9 @@ const app = express();
 
 app.use(express.json());
 app.use(cors())
+
 app.use('/api/auth', authRoute)
+app.use('/api', productRoute)
 
 app.get("/", (req,res) => {
     res.send('api is running')
